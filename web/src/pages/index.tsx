@@ -3,18 +3,10 @@ import {Inter} from "next/font/google";
 import Table from "react-bootstrap/Table";
 import {Alert, Container} from "react-bootstrap";
 import {GetServerSideProps, GetServerSidePropsContext} from "next";
-import {PaginationComponent} from '@/components/pagination';
+import {PaginationComponent, usePagination} from '@/components/pagination';
+import { TUserItem } from '@/types';
 
 const inter = Inter({subsets: ["latin"]});
-
-type TUserItem = {
-  id: number
-  firstname: string
-  lastname: string
-  email: string
-  phone: string
-  updatedAt: string
-}
 
 type TGetServerSideProps = {
   statusCode: number
@@ -39,6 +31,8 @@ export const getServerSideProps = (async (ctx: GetServerSidePropsContext): Promi
 
 
 export default function Home({statusCode, users}: TGetServerSideProps) {
+  const { currentPage, setCurrentPage, totalPages, pageLimit} = usePagination(users = [])
+
   if (statusCode !== 200) {
     return <Alert variant={'danger'}>Ошибка {statusCode} при загрузке данных</Alert>
   }
