@@ -30,11 +30,11 @@ export const PaginationComponent = (props: IPaginationComponent) => {
 
   return (
     <Pagination>
-      <Pagination.First disabled={currentPage === 1} />
-      <Pagination.Prev disabled={currentPage === 1} />
+      <Pagination.First disabled={currentPage === 1} onClick={() => setCurrentPage(1)} />
+      <Pagination.Prev disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} />
       {pageItems}
-      <Pagination.Next disabled={currentPage === totalPages} />
-      <Pagination.Next disabled={currentPage === totalPages} />
+      <Pagination.Next disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)} />
+      <Pagination.Next disabled={currentPage === totalPages} onClick={() => setCurrentPage(totalPages)} />
     </Pagination>
   );
 };
