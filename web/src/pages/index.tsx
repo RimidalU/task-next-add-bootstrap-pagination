@@ -31,7 +31,7 @@ export const getServerSideProps = (async (ctx: GetServerSidePropsContext): Promi
 
 
 export default function Home({statusCode, users}: TGetServerSideProps) {
-  const { currentPage, setCurrentPage, totalPages, pageLimit} = usePagination(users = [])
+  const { currentPage, setCurrentPage, totalPages, pageLimit} = usePagination(users)
 
   if (statusCode !== 200) {
     return <Alert variant={'danger'}>Ошибка {statusCode} при загрузке данных</Alert>
