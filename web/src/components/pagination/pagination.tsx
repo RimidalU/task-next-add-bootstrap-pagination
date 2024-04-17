@@ -1,23 +1,40 @@
-import Pagination from 'react-bootstrap/Pagination';
+import Pagination from "react-bootstrap/Pagination";
 
-export const PaginationComponent = (props: any) => {
+export interface IPaginationComponent {
+  setCurrentPage: (page: number) => void;
+  totalPages: number;
+  currentPage: number;
+  pageLimit: number;
+}
+
+export const PaginationComponent = (props: IPaginationComponent) => {
+  const { currentPage, setCurrentPage, totalPages, pageLimit } = props;
+
+  let pageItems = [];
+
+  for (let page = 1; page <= totalPages; page++) {
+    if (currentPage !== page) {
+      pageItems.push(
+        <Pagination.Item key={page} onClick={() => setCurrentPage(page)}>
+          {page}
+        </Pagination.Item>
+      );
+    } else {
+      pageItems.push(
+        <Pagination.Item active key={page} onClick={() => setCurrentPage(page)}>
+          {page}
+        </Pagination.Item>
+      );
+    }
+  }
+
   return (
     <Pagination>
-    <Pagination.First />
-    <Pagination.Prev />
-    <Pagination.Item>{1}</Pagination.Item>
-    <Pagination.Ellipsis />
-
-    <Pagination.Item>{10}</Pagination.Item>
-    <Pagination.Item>{11}</Pagination.Item>
-    <Pagination.Item active>{12}</Pagination.Item>
-    <Pagination.Item>{13}</Pagination.Item>
-    <Pagination.Item disabled>{14}</Pagination.Item>
-
-    <Pagination.Ellipsis />
-    <Pagination.Item>{20}</Pagination.Item>
-    <Pagination.Next />
-    <Pagination.Last />
-  </Pagination>
+      <Pagination.First disabled={currentPage === 1} />
+      <Pagination.Prev disabled={currentPage === 1} />
+      {pageItems}
+      <Pagination.Next disabled={currentPage === totalPages} />
+      <Pagination.Next disabled={currentPage === totalPages} />
+    </Pagination>
   );
 };
