@@ -3,6 +3,7 @@ import {Inter} from "next/font/google";
 import Table from "react-bootstrap/Table";
 import {Alert, Container} from "react-bootstrap";
 import {GetServerSideProps, GetServerSidePropsContext} from "next";
+import {PaginationComponent} from '@/components/pagination';
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -81,9 +82,7 @@ export default function Home({statusCode, users}: TGetServerSideProps) {
             }
             </tbody>
           </Table>
-
-          {/*TODO add pagination*/}
-
+          <PaginationComponent />
         </Container>
       </main>
     </>
