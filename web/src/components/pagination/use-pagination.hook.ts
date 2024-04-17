@@ -22,7 +22,6 @@ export function usePagination(itemsList: TUserItem[] = [], pageLimit = 20) {
     currentPage,
     setCurrentPage,
     totalPages,
-    pageLimit,
     usersOnPage,
   };
 }

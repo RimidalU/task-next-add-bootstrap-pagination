@@ -1,2 +1,2 @@
 export * from './pagination'
-export* from './pagination.hooks'
+export* from './use-pagination.hook'

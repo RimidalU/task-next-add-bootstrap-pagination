@@ -6,14 +6,13 @@ export interface IPaginationComponent {
   setCurrentPage: (page: number) => void;
   totalPages: number;
   currentPage: number;
-  pageLimit: number;
 }
 
 export const PaginationComponent = (props: IPaginationComponent) => {
   const DISPLAYED_PAGES_COUNT = 10;
   const halfPagination = DISPLAYED_PAGES_COUNT / 2;
 
-  const { currentPage, setCurrentPage, totalPages, pageLimit } = props;
+  const { currentPage, setCurrentPage, totalPages } = props;
 
   let pageItems = [];
   let startPage = currentPage - halfPagination;

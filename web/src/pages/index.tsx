@@ -29,7 +29,7 @@ export const getServerSideProps = (async (ctx: GetServerSidePropsContext): Promi
 }) satisfies GetServerSideProps<TGetServerSideProps>;
 
 export default function Home({ statusCode, users }: TGetServerSideProps) {
-  const { currentPage, setCurrentPage, totalPages, pageLimit, usersOnPage } = usePagination(users);
+  const { currentPage, setCurrentPage, totalPages, usersOnPage } = usePagination(users);
 
   if (statusCode !== 200) {
     return <Alert variant={"danger"}>Ошибка {statusCode} при загрузке данных</Alert>;
@@ -74,7 +74,6 @@ export default function Home({ statusCode, users }: TGetServerSideProps) {
           </Table>
           <PaginationComponent
             currentPage={currentPage}
-            pageLimit={pageLimit}
             setCurrentPage={setCurrentPage}
             totalPages={totalPages}
           />
