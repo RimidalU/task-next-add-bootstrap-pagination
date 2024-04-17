@@ -1,5 +1,7 @@
 import Pagination from "react-bootstrap/Pagination";
 
+import styles from "./pagination.module.scss";
+
 export interface IPaginationComponent {
   setCurrentPage: (page: number) => void;
   totalPages: number;
@@ -43,7 +45,7 @@ export const PaginationComponent = (props: IPaginationComponent) => {
   }
 
   return (
-    <Pagination>
+    <Pagination className={styles.wrapper}>
       <Pagination.First disabled={currentPage === 1} onClick={() => setCurrentPage(1)} />
       <Pagination.Prev disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} />
       {pageItems}
